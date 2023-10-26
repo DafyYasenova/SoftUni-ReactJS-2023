@@ -1,19 +1,44 @@
-import Header from './components/Header';
-import Body from './components/Body';
 import './App.css'
+import Header from './components/Header';
+import Banner from './components/Banner';
+import Services from './components/Services';
+import About from './components/About';
+import Catalog from './components/Catalog';
+import Who from './components/Who';
+import Projects from './components/Projects'
+import Client from './components/Client';
+import Contacts from './components/Contacts';
+import Footer from './components/Footer';
+import CopyRigth from './components/CopyRight';
 
 function App() {
 
-
   return (
-  <div>
-      <div>
+    <div>
+     
+      <Header />
 
-       <Header />
-       <Body />
-      </div>
-      </div>
-    
+      <Banner />
+
+      <Services />
+
+      <About />
+
+      <Catalog />
+
+      {/* <Who /> */}
+
+      {/* <Projects /> */}
+
+      <Client />
+
+      <Contacts />
+
+      <Footer />
+      <CopyRigth />
+
+    </div>
+
   )
 }
 
