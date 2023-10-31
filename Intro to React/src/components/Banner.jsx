@@ -5,21 +5,21 @@ export default function Banner (){
             <div id="costum_slider" className="carousel slide" data-ride="carousel">
                <div className="carousel-inner">
                   <div className="carousel-item active">
-                     <h1 className="furniture_text">FURNITURE</h1>
+                     <h1 className="furniture_text">BLINDS</h1>
                      <p className="there_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some fo</p>
                      <div className="contact_bt_main">
                         <div className="contact_bt"><a href="contact.html">Contact Us</a></div>
                      </div>
                   </div>
                   <div className="carousel-item">
-                     <h1 className="furniture_text">FURNITURE</h1>
+                     <h1 className="furniture_text">BLINDS</h1>
                      <p className="there_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some fo</p>
                      <div className="contact_bt_main">
                         <div className="contact_bt"><a href="contact.html">Contact Us</a></div>
                      </div>
                   </div>
                   <div className="carousel-item">
-                     <h1 className="furniture_text">FURNITURE</h1>
+                     <h1 className="furniture_text">BLINDS</h1>
                      <p className="there_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some fo</p>
                      <div className="contact_bt_main">
                         <div className="contact_bt"><a href="contact.html">Contact Us</a></div>

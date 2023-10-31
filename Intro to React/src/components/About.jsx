@@ -9,7 +9,7 @@ export default function About(){
                   <div className="read_bt1"><a href="#">Read More</a></div>
                </div>
                <div className="col-md-6">
-                  <div className="image_1"><img src="images/img-1.png" /></div>
+                  <div className="image_1"><img src="images/original_2-scaled.png" /></div>
                </div>
             </div>
          </div>
