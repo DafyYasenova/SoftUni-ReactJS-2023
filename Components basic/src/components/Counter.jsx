@@ -56,7 +56,7 @@ export default function Counter(props) {
             <h3>{message}</h3>
             <p>Count: {count}</p>
 
-            <button onClick={onDecrementClick}>-</button>
+            <button disabled={count < 0} onClick={onDecrementClick}>-</button>
             <button onClick={onClearClick}>Clear</button>
             <button onClick={onIncrementClick}>+</button>
             {/* <button onClick={() => setCount(count - 1)}>-</button> */}
