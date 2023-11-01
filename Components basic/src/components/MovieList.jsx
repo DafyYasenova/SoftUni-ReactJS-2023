@@ -1,10 +1,12 @@
 import Movie from "./Movie"
+import Heading from "./Heading";
+
 
 export default function MovieList(props) {
     
     return (
         <div className="movie-list">
-            <h2>{props.headingText}</h2>
+           <Heading>Some heading == prop.children</Heading>
             <ul>
             <Movie data={props.movies[0]} />
                 
