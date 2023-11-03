@@ -15,14 +15,22 @@ function App() {
       .then(response => response.json())
       .then(data => {
         // console.log(data)
-        const result = Object.keys(data).map(id => ({id, ...data[id]}))
+        const result = Object.keys(data).map(id => ({ id, ...data[id] }))
         setTodos(result);
       })
   }, []);
 
-  const toggleTodosStatus =(id) =>{
-setTodos(state => state.map(todo => todo.id == id ? ({...todo, isCompleted : !todo.isCompleted}): todo))
+  const toggleTodosStatus = (id) => {
+    setTodos(state => state.map(todo => todo.id == id ? ({ ...todo, isCompleted: !todo.isCompleted }) : todo))
   }
+
+  const onAddTodo = () => {
+    const lastId = Number(todos[todos.length - 1].id);
+    const text = prompt('Task name:');
+    const newTask = { id: lastId + 1, text, isCompleted: false };
+    setTodos(state => [newTask, ...state]);
+  }
+
   return (
     <>
 
@@ -36,7 +44,7 @@ setTodos(state => state.map(todo => todo.id == id ? ({...todo, isCompleted : !to
           <h1>Todo List</h1>
 
           <div className="add-btn-container">
-            <button className="btn">+ Add new Todo</button>
+            <button className="btn" onClick={onAddTodo}>+ Add new Todo</button>
           </div>
 
           <div className="table-wrapper">
@@ -45,7 +53,7 @@ setTodos(state => state.map(todo => todo.id == id ? ({...todo, isCompleted : !to
             {/* <Loading /> */}
 
 
-            <TodoList todos={todos} toggleTodosStatus={toggleTodosStatus}/>
+            <TodoList todos={todos} toggleTodosStatus={toggleTodosStatus} />
           </div>
         </section>
       </main>
