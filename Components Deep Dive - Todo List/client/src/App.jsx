@@ -15,22 +15,26 @@ function App() {
     fetch('http://localhost:3030/jsonstore/todos')
       .then(response => response.json())
       .then(data => {
-        // console.log(data)
         const result = Object.keys(data).map(id => ({ id, ...data[id] }))
         setTodos(result);
         setIsLoading(false);
       })
   }, []);
 
-  const toggleTodosStatus = (id) => {
-    setTodos(state => state.map(todo => todo.id == id ? ({ ...todo, isCompleted: !todo.isCompleted }) : todo))
+  
+  const onAddTodo = () => {
+    const lastId = todos[todos.length - 1].id;
+    const text = prompt('Add task:');
+    const newTask = { id: lastId + 1, text, isCompleted: false };
+    
+    setTodos(state => [newTask, ...state]);
+    console.log(todos)
+    console.log(lastId)
+    console.log(newTask)
   }
 
-  const onAddTodo = () => {
-    const lastId = Number(todos[todos.length - 1].id);
-    const text = prompt('Task name:');
-    const newTask = { id: lastId + 1, text, isCompleted: false };
-    setTodos(state => [newTask, ...state]);
+const toggleTodosStatus = (id) => {
+    setTodos(state => state.map(todo => todo.id === id ? ({ ...todo, isCompleted: !todo.isCompleted }) : todo))
   }
 
   return (
