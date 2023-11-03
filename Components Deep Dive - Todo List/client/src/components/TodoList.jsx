@@ -1,96 +1,27 @@
-export default function TodoList(){
-    return(
-<table className="table">
-          <thead>
-            <tr>
-              <th className="table-header-task">Task</th>
-              <th className="table-header-status">Status</th>
-              <th className="table-header-action">Action</th>
-            </tr>
-          </thead>
-          <tbody>
+export default function TodoList({ todos, toggleTodosStatus,}) {
+    return (
+        <table className="table">
+            <thead>
+                <tr>
+                    <th className="table-header-task">Task</th>
+                    <th className="table-header-status">Status</th>
+                    <th className="table-header-action">Action</th>
+                </tr>
+            </thead>
+            <tbody>
 
-          
-            <tr className="todo is-completed">
-              <td>Give dog a bath</td>
-              <td>Complete</td>
-              <td className="todo-action">
-                <button className="btn todo-btn">Change status</button>
-              </td>
-            </tr>
+                {todos.map(todo => (
+                    <tr className={`todo ${todo.isCompleted ? 'is-completed' :''}`.trim()}>
+                        <td>{todo.text}</td>
+                        <td>{todo.isCompleted ? 'Complete' : 'Not complete'}</td>
+                        <td className="todo-action">
+                            <button className="btn todo-btn" onClick={() =>toggleTodosStatus(todo.id)}>Change status</button>
+                        </td>
+                    </tr>
+                ))}
 
-          
-            <tr className="todo is-completed">
-              <td>Do laundry</td>
-              <td>Complete</td>
-              <td className="todo-action">
-                <button className="btn todo-btn">Change status</button>
-              </td>
-            </tr>
 
-           
-            <tr className="todo">
-              <td>Vacuum floor</td>
-              <td>Incomplete</td>
-              <td className="todo-action">
-                <button className="btn todo-btn">Change status</button>
-              </td>
-            </tr>
-
-            
-            <tr className="todo is-completed">
-              <td>Feed cat</td>
-              <td>Complete</td>
-              <td className="todo-action">
-                <button className="btn todo-btn">Change status</button>
-              </td>
-            </tr>
-
-           
-            <tr className="todo">
-              <td>Change light bulbs</td>
-              <td>Incomplete</td>
-              <td className="todo-action">
-                <button className="btn todo-btn">Change status</button>
-              </td>
-            </tr>
-
-            
-            <tr className="todo is-completed">
-              <td>Feed cat</td>
-              <td>Complete</td>
-              <td className="todo-action">
-                <button className="btn todo-btn">Change status</button>
-              </td>
-            </tr>
-
-           
-            <tr className="todo">
-              <td>Change light bulbs</td>
-              <td>Incomplete</td>
-              <td className="todo-action">
-                <button className="btn todo-btn">Change status</button>
-              </td>
-            </tr>
-
-          
-            <tr className="todo is-completed">
-              <td>Go to Store</td>
-              <td>Completed</td>
-              <td className="todo-action">
-                <button className="btn todo-btn">Change status</button>
-              </td>
-            </tr>
-
-           
-            <tr classNameName="todo">
-              <td>Fill gas tank</td>
-              <td>Incomplete</td>
-              <td classNameName="todo-action">
-                <button classNameName="btn todo-btn">Change status</button>
-              </td>
-            </tr>
-          </tbody>
+            </tbody>
         </table>
     )
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import './App.css'
 import Loading from './components/Loading'
@@ -7,37 +7,51 @@ import Footer from './components/Footer'
 import TodoList from './components/TodoList'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState([]);
 
+
+  useEffect(() => {
+    fetch('http://localhost:3030/jsonstore/todos')
+      .then(response => response.json())
+      .then(data => {
+        // console.log(data)
+        const result = Object.keys(data).map(id => ({id, ...data[id]}))
+        setTodos(result);
+      })
+  }, []);
+
+  const toggleTodosStatus =(id) =>{
+setTodos(state => state.map(todo => todo.id == id ? ({...todo, isCompleted : !todo.isCompleted}): todo))
+  }
   return (
     <>
-     
- <Header />
 
- 
-  <main classNameName="main">
+      <Header />
 
-   
-    <section classNameName="todo-list-container">
-      <h1>Todo List</h1>
 
-      <div classNameName="add-btn-container">
-        <button classNameName="btn">+ Add new Todo</button>
-      </div>
+      <main className="main">
 
-      <div className="table-wrapper">
 
-       
-       {/* <Loading /> */}
+        <section className="todo-list-container">
+          <h1>Todo List</h1>
 
-      
-        <TodoList />
-      </div>
-    </section>
-  </main>
+          <div className="add-btn-container">
+            <button className="btn">+ Add new Todo</button>
+          </div>
 
-  <Footer />
- 
+          <div className="table-wrapper">
+
+
+            {/* <Loading /> */}
+
+
+            <TodoList todos={todos} toggleTodosStatus={toggleTodosStatus}/>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+
     </>
   )
 }
