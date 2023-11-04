@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import CreateUserModal from "./CreateUserModal";
 
 
+
 export default function UserTable() {
 
     const [users, setUsers] = useState([]);
@@ -13,7 +14,7 @@ export default function UserTable() {
     useEffect(() => {
         userService.getAll()
             .then(result => setUsers(result))
-            .catch()
+            .catch(error => console.log(error))
     }, []);
 
 
@@ -25,11 +26,26 @@ export default function UserTable() {
         setShowCreateModal(false);
     }
 
+const userCreateHandler = async (e) => {
+    e.preventDefault();
+    
+    const data = Object.fromEntries(new FormData(e.currentTarget));
+    const newUser = await userService.create(data);
+    
+    setUsers(state => [...state, newUser])
+    setShowCreateModal(false);
 
+   
+
+    
+}
     return (
         <div className="table-wrapper">
 
-            {showCreateModal && <CreateUserModal hideCreateUserModal={hideCreateUserModal}/>}
+            {showCreateModal && <CreateUserModal 
+            hideCreateUserModal={hideCreateUserModal}
+            onUserCreate={userCreateHandler}
+            />}
 
             {/* <!-- <div className="loading-shade"> -->
         <!-- Loading spinner  -->
