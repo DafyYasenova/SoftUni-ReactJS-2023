@@ -2,6 +2,7 @@ import UserListItem from "./UserListItem";
 import * as userService from "../services/userService";
 import { useEffect, useState } from "react";
 import CreateUserModal from "./CreateUserModal";
+import UserDetailsModal from "./UserDetailsModal";
 
 
 
@@ -9,7 +10,8 @@ export default function UserTable() {
 
     const [users, setUsers] = useState([]);
     const [showCreateModal, setShowCreateModal] = useState(false);
-
+    const [showDetails, setShowDetails] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
 
     useEffect(() => {
         userService.getAll()
@@ -19,33 +21,49 @@ export default function UserTable() {
 
 
     const createUserClickHandler = () => {
-       setShowCreateModal(true);
+        setShowCreateModal(true);
     }
 
     const hideCreateUserModal = () => {
         setShowCreateModal(false);
     }
 
-const userCreateHandler = async (e) => {
-    e.preventDefault();
-    
-    const data = Object.fromEntries(new FormData(e.currentTarget));
-    const newUser = await userService.create(data);
-    
-    setUsers(state => [...state, newUser])
-    setShowCreateModal(false);
+    const userCreateHandler = async (e) => {
+        e.preventDefault();
 
-   
+        const data = Object.fromEntries(new FormData(e.currentTarget));
+        const newUser = await userService.create(data);
 
-    
-}
+        setUsers(state => [...state, newUser])
+        setShowCreateModal(false);
+
+    }
+
+
+    const userDetailsHandler = async (userId) => {
+
+        // const userDetails = await userService.getOne(userId);
+        setSelectedUser(userId);
+        setShowDetails(true);
+
+        // console.log(userDetails);
+
+    }
     return (
         <div className="table-wrapper">
 
-            {showCreateModal && <CreateUserModal 
-            hideCreateUserModal={hideCreateUserModal}
-            onUserCreate={userCreateHandler}
-            />}
+            {showCreateModal && (<CreateUserModal
+                hideCreateUserModal={hideCreateUserModal}
+                onUserCreate={userCreateHandler}
+            />
+            )}
+
+            {showDetails && (<UserDetailsModal
+                onClose={() => setShowDetails(false)}
+                userId={selectedUser}
+               
+            />
+            )}
 
             {/* <!-- <div className="loading-shade"> -->
         <!-- Loading spinner  -->
@@ -174,12 +192,14 @@ const userCreateHandler = async (e) => {
                     {users.map(user => (
                         <UserListItem
                             key={user._id}
+                            userId={user._id}
                             createdAt={user.createdAt}
                             email={user.email}
                             firstName={user.firstName}
                             lastName={user.lastName}
                             phoneNumber={user.phoneNumber}
                             imageUrl={user.imageUrl}
+                            onDetailsClick={userDetailsHandler}
                         />
 
                     ))}

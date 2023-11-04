@@ -1,5 +1,13 @@
 const baseUrl = 'http://localhost:3030/jsonstore/users';
 
+export const getOne = async (userId) =>{
+
+    const response =  await fetch(`${baseUrl}/${userId}`);
+    const result = await response.json();
+
+    return result;
+};
+
 export const getAll = async () => {
 
     
@@ -40,7 +48,5 @@ export const create = async (data) => {
 
     const result = await response.json();
     return result;
-
-
 
 }
