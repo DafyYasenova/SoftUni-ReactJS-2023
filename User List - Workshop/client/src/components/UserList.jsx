@@ -3,7 +3,7 @@ import UserTable from "./UserTable";
 
 export default function UserList(){
     return(
-        <section classNameName="card users-container">
+        <section className="card users-container">
       
         <Search />
   
