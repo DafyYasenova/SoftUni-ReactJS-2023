@@ -28,7 +28,9 @@ function App() {
     const newTask = { id: lastId + 1, text, isCompleted: false };
     
     setTodos(state => [newTask, ...state]);
-   
+    console.log(todos)
+    console.log(lastId)
+    console.log(newTask)
   }
 
 const toggleTodosStatus = (id) => {
