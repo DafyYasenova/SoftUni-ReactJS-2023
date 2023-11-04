@@ -3,6 +3,7 @@ import * as userService from "../services/userService";
 import { useEffect, useState } from "react";
 import CreateUserModal from "./CreateUserModal";
 import UserDetailsModal from "./UserDetailsModal";
+import DeleteModal from "./DeleteModal";
 
 
 
@@ -12,6 +13,7 @@ export default function UserTable() {
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
+    const [showDelete, setShowDelete] = useState(false);
 
     useEffect(() => {
         userService.getAll()
@@ -49,6 +51,23 @@ export default function UserTable() {
         // console.log(userDetails);
 
     }
+
+    const deleteUserClickHandler = (userId) => {
+        setSelectedUser(userId);
+        setShowDelete(true)
+        // console.log(userId);
+    }
+    const onDeleteHandler = async (userId) => {
+
+        // console.log(userId)
+        // console.log('deleteUser')
+
+        const result = await userService.remove(selectedUser);
+        setUsers(state => state.filter(user => user._id !== selectedUser))
+
+        setShowDelete(false);
+
+    }
     return (
         <div className="table-wrapper">
 
@@ -61,9 +80,14 @@ export default function UserTable() {
             {showDetails && (<UserDetailsModal
                 onClose={() => setShowDetails(false)}
                 userId={selectedUser}
-               
+
             />
             )}
+
+            {showDelete && (<DeleteModal
+                onClose={() => setShowDelete(false)}
+                onDelete={onDeleteHandler}
+            />)}
 
             {/* <!-- <div className="loading-shade"> -->
         <!-- Loading spinner  -->
@@ -200,6 +224,7 @@ export default function UserTable() {
                             phoneNumber={user.phoneNumber}
                             imageUrl={user.imageUrl}
                             onDetailsClick={userDetailsHandler}
+                            onDeleteClick={deleteUserClickHandler}
                         />
 
                     ))}
