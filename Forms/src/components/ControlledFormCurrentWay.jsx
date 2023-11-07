@@ -4,7 +4,12 @@ const formInitialState = {
     username: '',
     password: '',
     age: '',
-    gender: 'm'
+    gender: '', 
+    art: false,
+    music: false,
+    swimming: false, 
+    shopping:false,
+    cinema: false,
 }
 export default function ControlledFormCurrentWay() {
 
@@ -17,8 +22,6 @@ export default function ControlledFormCurrentWay() {
             [e.target.name]: e.target.value,
           
         }))
-
-
     }
 
     const resetHandler = () => {
@@ -30,6 +33,12 @@ export default function ControlledFormCurrentWay() {
         resetHandler()
     }
 
+    const onCheckboxHandler = (e) =>{
+        setFormState(state => ({
+            ...state,
+            [e.target.name]: e.target.checked
+        }))
+    }
     return (
         <>
             <h1>Controlled form</h1>
@@ -49,10 +58,26 @@ export default function ControlledFormCurrentWay() {
                 </div>
                 <div>
                     <label htmlFor="gender">Gender</label>
-                    <select name="gender" id="gender" onChange={changeHandler}>
-                        <option value="f" selected={formState.gender === 'f'}>F</option>
-                        <option value="m" selected={formState.gender === 'm'}>M</option>
+                    <select name="gender" id="gender" onChange={changeHandler} value={formState.gender}>
+                        <option value="f" >F</option>
+                        <option value="m" >M</option>
                     </select>
+                </div>
+
+                <div>
+                    <h3>Hobbies</h3>
+                    <label htmlFor="art">Art</label>
+                    <input type="checkbox" name="art" id="art" checked={formState.art} onChange={onCheckboxHandler}/>
+
+                    <label htmlFor="music">Music</label>
+                    <input type="checkbox" name="music" id="music" checked={formState.music} onChange={onCheckboxHandler}/>
+
+                    <label htmlFor="cinema">Cinema</label>
+                    <input type="checkbox" name="cinema" id="cinema" checked={formState.cinema} onChange={onCheckboxHandler}/>
+                    <label htmlFor="swimming">Swimming</label>
+                    <input type="checkbox" name="swimming" id="swimming" checked={formState.swimming} onChange={onCheckboxHandler}/>
+                    <label htmlFor="shopping">Shopping</label>
+                    <input type="checkbox" name="shopping" id="shopping" checked={formState.shopping} onChange={onCheckboxHandler}/>
                 </div>
                 <div>
                     {/* <input type="submit" value="Register" /> */}
