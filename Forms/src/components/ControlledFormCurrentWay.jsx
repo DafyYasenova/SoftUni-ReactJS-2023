@@ -1,5 +1,6 @@
 import { useState } from "react"
 
+import styles from './ControlledForm.module.css'
 const formInitialState = {
     username: '',
     password: '',
@@ -14,6 +15,7 @@ const formInitialState = {
 export default function ControlledFormCurrentWay() {
 
     const [formState, setFormState] = useState(formInitialState);
+    const [errors, setErrors] = useState({});
 
     const changeHandler = (e) => {
 
@@ -42,6 +44,27 @@ export default function ControlledFormCurrentWay() {
         resetHandler()
     }
 
+    const ageValidator = () => {
+        // console.log(formState.age)
+
+
+        if (formState.age < 0 || formState.age > 120) {
+            setErrors(state => ({
+                ...state,
+                age: 'Age should be between 0 and 120',
+
+            }));
+        } else {
+            if(errors.age){
+            setErrors(
+                state => ({
+                    ...state,
+                    age: ''
+                })
+            )
+        }
+    }
+    }
     // const onCheckboxHandler = (e) =>{
     //     setFormState(state => ({
     //         ...state,
@@ -63,7 +86,14 @@ export default function ControlledFormCurrentWay() {
                 </div>
                 <div>
                     <label htmlFor="age">Age: </label>
-                    <input type="number" name="age" id="age" value={formState.age} onChange={changeHandler} />
+                    <input type="number" name="age" id="age" 
+                    value={formState.age} 
+                    onChange={changeHandler}
+                     onBlur={ageValidator} 
+                     className={errors.age && styles["input-error"]} />
+                    {errors.age && (
+                        <p className={styles["error-message"]}>{errors.age}</p>
+                    )}
                 </div>
                 <div>
                     <label htmlFor="gender">Gender</label>
