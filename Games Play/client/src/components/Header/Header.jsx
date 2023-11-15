@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import styles from './Header.module.css';
 
 export default function Header(){
@@ -6,18 +8,18 @@ export default function Header(){
      <>
         <header>
         
-        <h1><a className={styles.home} href="/">GamesPlay</a></h1>
+        <h1><Link className={styles.home} to="/">GamesPlay</Link></h1>
         <nav>
-            <a href="/catalog">All games</a>
+            <Link to="/catalog">All games</Link>
            
             <div id="user">
-                <a href="/create">Create Game</a>
-                <a href="/logout">Logout</a>
+                <Link to="/create">Create Game</Link>
+                <Link to="/logout">Logout</Link>
             </div>
            
             <div id="guest">
-                <a href="/login">Login</a>
-                <a href="/register">Register</a>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
             </div>
         </nav>
     </header>
