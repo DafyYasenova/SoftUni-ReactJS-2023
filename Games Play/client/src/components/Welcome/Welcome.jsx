@@ -3,7 +3,7 @@ import styles from './Welcome.module.css';
 export default function Welcome(){
     return(
         <>
-        <section id="welcome-world">
+        <section id={styles["welcome-world"]}>
 
         <div className={styles["welcome-message"]}>
             <h2>ALL new games are</h2>

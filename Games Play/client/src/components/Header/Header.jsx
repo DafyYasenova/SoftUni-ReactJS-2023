@@ -6,7 +6,7 @@ export default function Header(){
      <>
         <header>
         
-        <h1><a className="home" href="/">GamesPlay</a></h1>
+        <h1><a className={styles.home} href="/">GamesPlay</a></h1>
         <nav>
             <a href="/catalog">All games</a>
            
