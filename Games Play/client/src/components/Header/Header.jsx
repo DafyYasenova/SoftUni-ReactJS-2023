@@ -3,6 +3,7 @@ import styles from './Header.module.css';
 export default function Header(){
 
     return(
+     <>
         <header>
         
         <h1><a className="home" href="/">GamesPlay</a></h1>
@@ -20,5 +21,6 @@ export default function Header(){
             </div>
         </nav>
     </header>
+    </>
     )
 }
