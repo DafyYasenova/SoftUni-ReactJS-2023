@@ -12,6 +12,22 @@
 .container {
     padding: 40px;
 }
+.container {
+    text-align: left;
+    margin-top: 0px;
+}
+
+.field>span {
+    position: absolute;
+    font-size: 18px;
+    bottom: 17px;
+    right: 8px;
+    text-decoration: none;
+    color: black;
+    background: rgb(235, 157, 142);
+    border-radius: 10px;
+    padding: 5px;
+}
 
 .brand-logo {
     height: 100px;
@@ -83,7 +99,7 @@ label[for="terms"]>input {
     display: inline;
 }
 
-.btn.submit {
+.submit {
     margin-top: 30px;
     background: #778e9c;
     height: 60px;
@@ -96,24 +112,8 @@ label[for="terms"]>input {
     transition: 0.5s;
 }
 
-.btn.submit:hover {
+.submit:hover {
     color: white;
     background-color: #8fa9b9;
 }
 
-.container {
-    text-align: left;
-    margin-top: 0px;
-}
-
-.field>span {
-    position: absolute;
-    font-size: 18px;
-    bottom: 17px;
-    right: 8px;
-    text-decoration: none;
-    color: black;
-    background: rgb(235, 157, 142);
-    border-radius: 10px;
-    padding: 5px;
-}
