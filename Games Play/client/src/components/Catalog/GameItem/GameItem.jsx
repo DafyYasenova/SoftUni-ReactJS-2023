@@ -1,19 +1,20 @@
 import styles from '../Catalog.module.css';
-
+import { Link } from 'react-router-dom';
 
 export default function GameItem({
-titile, 
-category,
-imageUrl,
+    _id,
+    titile,
+    category,
+    imageUrl,
 }) {
-    return(
+    return (
         <div className={styles.allGames}>
-        <div className={styles["allGames-info"]}>
-            <img src={imageUrl} />
-            <h6>{category}</h6>
-            <h2>{titile}</h2>
-            <a href="#" className={styles["details-button"]}>Details</a>
-        </div>
+            <div className={styles["allGames-info"]}>
+                <img src={imageUrl} />
+                <h6>{category}</h6>
+                <h2>{titile}</h2>
+                <Link to={`/catalog/${_id}`} className={styles["details-button"]}>Details</Link>
+            </div>
         </div>
     )
 }

@@ -1,6 +1,18 @@
 import styles from './Details.module.css';
+import {useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import * as gameService from '../../services/gameService';
 
 export default function Details(){
+    const [game, setGame] = useState({});
+    const { gameId } = useParams({});
+
+
+    useEffect(() => {
+        gameService.getOne(gameId)
+        .then(setGame)
+    },[gameId])
     return (
         <>
          <section id={styles["game-details"]}>
@@ -8,18 +20,13 @@ export default function Details(){
             <div className={styles["info-section"]}>
 
                 <div className={styles["game-header"]}>
-                    <img className={styles["game-img"]} src="images/MineCraft.png" />
-                    <h1>Bright</h1>
-                    <span className={styles.levels}>MaxLevel: 4</span>
-                    <p className={styles.type}>Action, Crime, Fantasy</p>
+                    <img className={styles["game-img"]} src={game.imageUrl} alt={game.title} />
+                    <h1>{game.title}</h1>
+                    <span className={styles.levels}>MaxLevel: {game.maxLevel}</span>
+                    <p className={styles.type}>{game.category}</p>
                 </div>
 
-                <p className={styles.text}>
-                    Set in a world where fantasy creatures live side by side with humans. A human cop is forced to work
-                    with an Orc to find a weapon everyone is prepared to kill for. Set in a world where fantasy
-                    creatures live side by side with humans. A human cop is forced
-                    to work with an Orc to find a weapon everyone is prepared to kill for.
-                </p>
+                <p className={styles.text}>{game.summary} </p>
 
                
                 <div className={styles["details-comments"]}>
