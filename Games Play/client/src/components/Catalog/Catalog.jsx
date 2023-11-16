@@ -1,24 +1,29 @@
 import styles from './Catalog.module.css';
+import { useEffect, useState } from 'react';
+import * as gameService from '../../services/gameService';
+import GameItem from './GameItem/GameItem';
 
 
 export default function Catalog(){
+    const [games, setGames] = useState([]);
+
+    useEffect(() =>{
+        gameService.getAll()
+        .then(result => setGames(result))
+    }, [])
+
+
     return(
         <>
             <section id={styles["catalog-page"]}>
             <h1>All Games</h1>
            
-            <div className={styles.allGames}>
-                <div className={styles["allGames-info"]}>
-                    <img src="/images/avatar-1.jpg" />
-                    <h6>Action</h6>
-                    <h2>Cover Fire</h2>
-                    <a href="#" className={styles["details-button"]}>Details</a>
-                </div>
+        {games.map(game => (
+            <GameItem key={game._id} {...game}/>
+        ))}
 
-            </div>
-           
-        
-            <h3 className={styles["no-articles"]}>No articles yet</h3>
+        {games.length === 0 && <h3 className={styles["no-articles"]}>No articles yet</h3>}
+            
         </section>
         </>
     )
