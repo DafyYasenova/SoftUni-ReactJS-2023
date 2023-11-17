@@ -15,7 +15,7 @@ export default function Details() {
     useEffect(() => {
         gameService.getOne(gameId)
             .then(setGame)
-        commentService.getAllComments()
+        commentService.getAllComments(gameId)
             .then(setComments)
     }, [gameId]);
 
@@ -29,7 +29,7 @@ export default function Details() {
             formData.get('username'),
             formData.get('comment')
         );
-        setComments(state => [...state, newState]);
+        setComments(state => [...state, newComment]);
 
         console.log(newComment)
     }
@@ -56,7 +56,7 @@ export default function Details() {
                                 <li className={styles.comment} key={_id}>
                                     <p>{username}: {text}</p>
                                 </li>
-                            ))};
+                            ))}
 
                         </ul>
                         {comments.length === 0 && <p className={styles["no-comment"]}>No comments.</p>}

@@ -11,7 +11,8 @@ export const createComment = async (gameId, username, text) => {
     });
     return newComment;
 }
-export const getAllComments = async () =>{
-   const result =  await request.get(baseUrl)
-   return Object.values(result)
+export const getAllComments = async (gameId) =>{
+   const result =  await request.get(baseUrl);
+   
+   return Object.values(result).filter(comment => comment.gameId === gameId)
 }
